@@ -4,7 +4,7 @@ import '../model/event_model.dart';
 class EventCardWidget extends StatelessWidget {
   final EventModel event;
 
-  const EventCardWidget({Key? key, required this.event}) : super(key: key);
+  const EventCardWidget({super.key, required this.event});
 
   String get _locationLabel => '${event.city}, ${event.district}';
 
@@ -59,10 +59,10 @@ class EventCardWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.green,
-                  child: const Icon(Icons.notifications, color: Colors.white, size: 20),
+                  child: Icon(Icons.notifications, color: Colors.white, size: 20),
                 ),
               ],
             ),
@@ -148,7 +148,7 @@ class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const _InfoRow({Key? key, required this.icon, required this.text}) : super(key: key);
+  const _InfoRow({required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {

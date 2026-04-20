@@ -21,22 +21,18 @@ Future<void> main() async {
     androidProvider: AndroidProvider.debug,
   );
 
-  // --- REİS TOKEN'I BURADA YAZDIRIYORUZ ---
+  // --- REİS TOKEN'I BURADA ALIYORUZ ---
   try {
-    final token = await FirebaseAppCheck.instance.getToken();
-    print("--------------------------------------------------");
-    print("--- REİS TOKEN BURADA ---");
-    print(token);
-    print("--------------------------------------------------");
-  } catch (e) {
-    print("Token alınırken hata oluştu: $e");
+    await FirebaseAppCheck.instance.getToken();
+  } catch (_) {
+    // ignore: avoid_print
   }
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +43,52 @@ class MyApp extends StatelessWidget {
       title: 'App3',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.orange,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        scaffoldBackgroundColor: const Color(0xFFF7F3EE),
+        primaryColor: const Color(0xFFFF8C00),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFFF8C00),
+          brightness: Brightness.light,
+        ),
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Color(0xFFFF8C00),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Color(0xFFE0DDD6), width: 1.2),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Color(0xFFE0DDD6), width: 1.2),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Color(0xFFFF8C00), width: 1.5),
+          ),
+          labelStyle: const TextStyle(color: Color(0xFF757575)),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFFF8C00),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+          ),
+        ),
+        textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Roboto'),
       ),
       home: user == null ? const LoginView() : const MainWrapper(),
     );

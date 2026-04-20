@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'common_widget/custom_bottom_nav_bar.dart';
 import 'add_event_view.dart';
 import 'home_view.dart';
+import 'profile_view.dart';
 
 class MainWrapper extends StatefulWidget {
-  const MainWrapper({Key? key}) : super(key: key);
+  const MainWrapper({super.key});
 
   @override
   State<MainWrapper> createState() => _MainWrapperState();
@@ -15,18 +16,18 @@ class _MainWrapperState extends State<MainWrapper> {
 
   static const List<String> _titles = [
     'Ana Sayfa',
-    'Gallery',
-    'Create',
-    'Announcements',
-    'Profile',
+    'Galeri',
+    'Etkinlik Ekle',
+    'Duyurular',
+    'Profil',
   ];
 
   static final List<Widget> _screens = [
     const HomeView(),
-    const _ScreenContent(title: 'Gallery'),
+    const _ScreenContent(title: 'Galeri'),
     const AddEventView(),
-    const _ScreenContent(title: 'Announcements'),
-    const _ScreenContent(title: 'Profile'),
+    const _ScreenContent(title: 'Duyurular'),
+    const ProfileView(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,7 +43,7 @@ class _MainWrapperState extends State<MainWrapper> {
           ? null
           : AppBar(
               title: Text(_titles[_selectedIndex]),
-              backgroundColor: Colors.orange,
+              backgroundColor: const Color(0xFFFF8C00),
             ),
       body: IndexedStack(
         index: _selectedIndex,

@@ -30,6 +30,40 @@ class LoginViewModel extends ChangeNotifier {
     }
   }
 
+  Future<bool> loginWithGoogle() async {
+    _setLoading(true);
+    try {
+      await authService.signInWithGoogle();
+      errorMessage = null;
+      return true;
+    } on FirebaseAuthException catch (e) {
+      errorMessage = e.message ?? 'Google ile giriş sırasında hata oluştu.';
+      return false;
+    } catch (_) {
+      errorMessage = 'Beklenmeyen bir hata oluştu.';
+      return false;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  Future<bool> loginWithFacebook() async {
+    _setLoading(true);
+    try {
+      await authService.signInWithFacebook();
+      errorMessage = null;
+      return true;
+    } on FirebaseAuthException catch (e) {
+      errorMessage = e.message ?? 'Facebook ile giriş sırasında hata oluştu.';
+      return false;
+    } catch (_) {
+      errorMessage = 'Beklenmeyen bir hata oluştu.';
+      return false;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
   Future<bool> loginAsGuest() async {
     _setLoading(true);
     try {

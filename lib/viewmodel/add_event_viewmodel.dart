@@ -51,7 +51,7 @@ class AddEventViewModel extends ChangeNotifier {
   }
 
   String get selectedImageLabel {
-    return selectedImagePath == null ? 'Resim seçilmedi' : 'Resim seçildi';
+    return selectedImagePath == null ? 'Henüz resim seçilmedi' : 'Resim seçildi';
   }
 
   List<String> get currentDistrictOptions => districtOptions[selectedCity] ?? [];

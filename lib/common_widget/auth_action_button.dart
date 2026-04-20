@@ -8,13 +8,13 @@ class AuthActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const AuthActionButton({
-    Key? key,
+    super.key,
     required this.backgroundColor,
     required this.foregroundColor,
     required this.icon,
     required this.label,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
